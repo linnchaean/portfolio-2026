@@ -1,0 +1,21 @@
+// ============================================================
+// Base / reset
+// ============================================================
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: var(--accent1);
+  }
+}
