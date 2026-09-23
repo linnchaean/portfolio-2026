@@ -10,7 +10,10 @@
   width: 100%;
   box-sizing: border-box;
   position: relative;
-  overflow-x: hidden;
+  // No overflow set here on purpose: this element must stay a plain
+  // block box, not its own scroll container. The horizontal clip for the
+  // negatively-offset background orbs lives on html/body instead (see
+  // _base.scss) — see that comment for why.
   background: linear-gradient(160deg, var(--page-bg-a) 0%, var(--page-bg-b) 35%, var(--page-bg-c) 70%, var(--page-bg-a) 100%);
 }
 
