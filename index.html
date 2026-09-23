@@ -3,92 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>임채안 포트폴리오 · 최종안 (라이트/다크 · 반응형 · 스크롤 애니메이션)</title>
-
+<title>임채안 포트폴리오</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
 <style>
-  html,body{margin:0;}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;}
-  .theme-light{
-    --page-bg-a:#EAF1FF; --page-bg-b:#F1ECFF; --page-bg-c:#EAFBF3;
-    --text:#1E2233; --muted:#5B6079; --muted2:#6B7085;
-    --glass-bg:rgba(255,255,255,0.55); --glass-border:rgba(255,255,255,0.7); --glass-shadow:0 8px 32px rgba(80,90,160,0.14);
-    --accent1:#6C63FF; --accent2:#3DBD86; --accent3:#E85D8A;
-    --pill-a:#6C63FF; --pill-b:#3DBD86; --pill-c:#E85D8A; --pill-n:#6B7085;
-    --cta-bg:#1E2233; --cta-text:#FFFFFF;
-    --nav-btn-text:#FFFFFF;
-    --orb1:#9FC0FF; --orb2:#C6B4FF; --orb3:#9EE8C4; --orb4:#FFC9E3; --orb5:#B4D4FF; --orb6:#D6C6FF;
-    --orb-op:0.5;
-    --divider: rgba(120,120,150,0.2);
-    --nav-scrolled-shadow: 0 10px 30px rgba(60,60,110,0.18);
-    color:var(--text);
-  }
-  .theme-dark{
-    --page-bg-a:#0B0E22; --page-bg-b:#150F30; --page-bg-c:#0E1428;
-    --text:#EDEBFF; --muted:#A6A3C8; --muted2:#8D8AB0;
-    --glass-bg:rgba(255,255,255,0.07); --glass-border:rgba(255,255,255,0.14); --glass-shadow:0 8px 30px rgba(0,0,0,0.4);
-    --accent1:#5B7CFF; --accent2:#2FBFAE; --accent3:#F472B6;
-    --pill-a:#5B7CFF; --pill-b:#2FBFAE; --pill-c:#E85D9C; --pill-n:#5B5A78;
-    --cta-bg:linear-gradient(90deg,#5B7CFF,#7DE0D6); --cta-text:#0B0E22;
-    --nav-btn-text:#0B0E22;
-    --orb1:#5B7CFF; --orb2:#7DE0D6; --orb3:#A78BFA; --orb4:#F472B6; --orb5:#5B7CFF; --orb6:#7DE0D6;
-    --orb-op:0.28;
-    --divider: rgba(255,255,255,0.14);
-    --nav-scrolled-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    color:var(--text);
-  }
-  a{text-decoration:none;color:inherit;}
-  a:hover{color:var(--accent1);}
-  .glass{background:var(--glass-bg);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);box-shadow:var(--glass-shadow);}
-  .glass-tile{transition:transform .18s ease;}
-  .glass-tile:hover{transform:translateY(-4px) rotate(-0.3deg);}
-  .orb{position:absolute;border-radius:999px;filter:blur(75px);z-index:0;will-change:transform;}
-  .theme-toggle{border:none;cursor:pointer;font-family:inherit;}
-  .site-nav{transition:box-shadow .35s ease;}
-  .site-nav.nav-scrolled{box-shadow:var(--nav-scrolled-shadow);}
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);}
-  .reveal.visible{opacity:1;transform:translateY(0);}
-  .grid4{grid-template-columns:repeat(4,minmax(0,1fr));}
-  .grid3{grid-template-columns:repeat(3,minmax(0,1fr));}
-  @media (max-width:1024px){
-    .nav-r{margin:20px 24px !important;padding:16px 24px !important;}
-    .nav-links{gap:16px !important;}
-    .pad-hero{padding:72px 48px 64px 48px !important;}
-    .mx-100{margin-left:48px !important;margin-right:48px !important;}
-    .pad-x100{padding-left:48px !important;padding-right:48px !important;padding-bottom:64px !important;}
-    .footer-wrap{margin-left:48px !important;margin-right:48px !important;padding:64px 48px !important;}
-    .grid4{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
-    .grid3{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
-    .hero-h1{font-size:44px !important;}
-    .hero-p{font-size:16px !important;}
-    .sec-h2{font-size:30px !important;}
-    .footer-h2{font-size:30px !important;}
-  }
-  @media (max-width:640px){
-    .nav-r{margin:14px 14px !important;padding:12px 16px !important;}
-    .nav-links{gap:10px !important;}
-    .nav-link-txt{display:none !important;}
-    .toggle-txt{display:none !important;}
-    .pad-hero{padding:56px 20px 48px 20px !important;}
-    .mx-100{margin-left:16px !important;margin-right:16px !important;}
-    .pad-x100{padding-left:20px !important;padding-right:20px !important;padding-bottom:48px !important;}
-    .footer-wrap{margin-left:16px !important;margin-right:16px !important;padding:48px 24px !important;}
-    .grid4{grid-template-columns:1fr !important;}
-    .grid3{grid-template-columns:1fr !important;}
-    .cert-row{flex-direction:column !important;}
-    .hero-h1{font-size:30px !important;line-height:1.35 !important;}
-    .hero-p{font-size:14px !important;}
-    .sec-h2{font-size:24px !important;}
-    .footer-h2{font-size:24px !important;}
-    .footer-bottom{flex-direction:column !important;align-items:flex-start !important;gap:10px !important;}
-  }
-
   .only-light{display:inline-flex;}
   .only-dark{display:none;}
   #theme-root.theme-dark .only-light{display:none;}
   #theme-root.theme-dark .only-dark{display:inline-flex;}
 </style>
-
 </head>
 <body style="margin:0;">
 
@@ -239,7 +162,7 @@
         <a href="https://www.myrobotsolution.com/" target="_blank" rel="noopener noreferrer" class="glass glass-tile reveal" style="transition-delay:.12s;border-radius:26px;padding:28px;min-height:210px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;color:inherit;">
           <div style="display:flex;justify-content:space-between;align-items:center;"><span style="background:var(--pill-b);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;">신규구축</span><span style="font-size:12px;color:var(--muted2);">2023</span></div>
           <div style="font-family:'Baloo 2',sans-serif;font-size:20px;font-weight:700;margin-top:18px;display:flex;align-items:center;gap:6px;">마로솔<span style="font-size:13px;color:var(--muted2);font-weight:400;">↗</span></div>
-          <div style="font-size:13px;line-height:1.6;color:var(--muted);margin-top:8px;">웹·모바일 사이트 구축</div>
+          <div style="font-size:13px;line-height:1.6;color:var(--muted);margin-top:8px;">반응형 웹 사이트 구축</div>
         </a>
         <a href="https://ai.bnviit.com/" target="_blank" rel="noopener noreferrer" class="glass glass-tile reveal" style="transition-delay:0s;border-radius:26px;padding:28px;min-height:210px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;color:inherit;">
           <div style="display:flex;justify-content:space-between;align-items:center;"><span style="background:var(--pill-b);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;">신규구축</span><span style="font-size:12px;color:var(--muted2);">2022</span></div>
