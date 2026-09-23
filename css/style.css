@@ -60,13 +60,13 @@
   color: var(--text);
 }
 
-html,
-body {
+html {
   margin: 0;
   overflow-x: hidden;
 }
 
 body {
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 }
 
