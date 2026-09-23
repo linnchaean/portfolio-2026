@@ -2,18 +2,27 @@
 // Base / reset
 // ============================================================
 
-html,
-body {
+html {
   margin: 0;
   // Clip the horizontal overflow caused by the negatively-offset
   // background orbs here, on the true page scroll container, instead of
-  // on .page-shell — setting overflow-x without overflow-y on a nested
-  // element makes browsers auto-compute its overflow-y as "auto" (CSS
-  // Overflow spec), which was creating a second, independent scrollbar.
+  // on .page-shell — setting overflow-x without overflow-y on an element
+  // makes browsers auto-compute its overflow-y as "auto" (CSS Overflow
+  // spec). html is the actual root scrolling element, so this is where
+  // that auto-computed vertical scrollbar SHOULD live.
+  //
+  // IMPORTANT: this must be set on html ONLY, not on body too. Applying
+  // it to both (as a combined "html, body" rule) triggers the same
+  // auto-overflow-y quirk on body as well, turning body into a SECOND,
+  // nested scroll container with its own scrollbar right next to html's —
+  // this is exactly what caused the double-scrollbar bug to reappear.
+  // Clipping horizontal overflow only needs ONE non-visible ancestor;
+  // body doesn't need overflow-x set for html's clip to work.
   overflow-x: hidden;
 }
 
 body {
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 }
 
