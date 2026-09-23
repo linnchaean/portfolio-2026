@@ -11,10 +11,35 @@
   box-sizing: border-box;
   position: relative;
   // No overflow set here on purpose: this element must stay a plain
-  // block box, not its own scroll container. The horizontal clip for the
+  // block box, not its own scroll container/clipping box. Giving it a
+  // non-'visible' overflow (even a matching hidden/hidden pair) sits
+  // BETWEEN the sticky nav (.nav-r, inside .page-content below) and the
+  // real scrolling element (html) — and that breaks position: sticky,
+  // because the nav then tries to stick relative to this box instead of
+  // the actual scrolling viewport. The horizontal clip for the
   // negatively-offset background orbs lives on html/body instead (see
-  // _base.scss) — see that comment for why.
+  // _base.scss); the vertical "orb sticks out past the footer" clip
+  // lives on .orb-field below instead, which is a sibling of
+  // .page-content — not an ancestor of the sticky nav — so it can't
+  // interfere with sticky.
   background: linear-gradient(160deg, var(--page-bg-a) 0%, var(--page-bg-b) 35%, var(--page-bg-c) 70%, var(--page-bg-a) 100%);
+}
+
+// Wraps the six decorative .orb-N elements only (NOT .page-content, so
+// the sticky nav's ancestor chain never passes through a clipping box).
+// The orbs are positioned at fixed pixel offsets tuned for desktop; at
+// narrower widths the real content is shorter (grid columns collapse),
+// so the last orb can end up below the actual footer and, being just
+// "visible" overflow, used to stretch the whole page's scrollable
+// height — a blank gap with a stray blurred orb floating in it below
+// the footer. Clipping the orbs to .page-shell's own (content-driven)
+// height here removes that gap without touching .page-shell's own
+// overflow.
+.orb-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .page-content {
