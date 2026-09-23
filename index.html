@@ -52,7 +52,7 @@
     </nav>
 
     <header class="pad-hero">
-      <div class="glass reveal hero-badge">✦ Publisher · 4년차</div>
+      <div class="glass reveal hero-badge">✦ Publisher · <span id="js-career-badge">4년차</span></div>
       <h1 class="reveal hero-h1">디자인과 코드 사이,<br>빈틈없이 잇는<br><span class="text-gradient">퍼블리셔 임채안</span>입니다.</h1>
       <p class="reveal hero-p">웹 표준과 접근성을 지키는 HTML 구조 설계, SCSS 기반의 정교한 디자인 구현, 슬라이드·API 기능 개발까지 — 화면의 모든 픽셀에 책임을 지는 작업을 합니다.</p>
       <div class="reveal hero-actions">
@@ -64,7 +64,7 @@
     <div id="about" class="mx-100 grid4">
       <div class="glass glass-tile reveal stagger-0 stat-card">
         <div class="stat-label">경력</div>
-        <div class="stat-value stat-value--accent1">4년차</div>
+        <div class="stat-value stat-value--accent1" id="js-career-years">4년차</div>
       </div>
       <div class="glass glass-tile reveal stagger-2 stat-card">
         <div class="stat-label">거점</div>
@@ -72,7 +72,7 @@
       </div>
       <div class="glass glass-tile reveal stagger-5 stat-card">
         <div class="stat-label">진행 프로젝트</div>
-        <div class="stat-value stat-value--accent2">11건</div>
+        <div class="stat-value stat-value--accent2" id="js-project-count">11건</div>
       </div>
       <div class="glass glass-tile reveal stagger-8 stat-card">
         <div class="stat-label">이수 과정</div>
@@ -230,6 +230,32 @@
 (function () {
   var root = document.getElementById('theme-root');
   var btn = document.getElementById('theme-toggle-btn');
+
+  // 경력: 2022년 8월 1일부터 경과한 만(滿) 연수를 자동 계산 (연단위 표기)
+  function computeCareerYears() {
+    var start = new Date(2022, 7, 1); // 2022-08-01
+    var now = new Date();
+    var years = now.getFullYear() - start.getFullYear();
+    var passedAnniversary = (now.getMonth() > start.getMonth()) ||
+      (now.getMonth() === start.getMonth() && now.getDate() >= start.getDate());
+    if (!passedAnniversary) years -= 1;
+    return years;
+  }
+
+  // 진행 프로젝트: 실제 렌더된 .project-card 개수를 세어 표기
+  function updateCareerAndProjectStats() {
+    var careerText = computeCareerYears() + '년차';
+    var careerEl = document.getElementById('js-career-years');
+    if (careerEl) careerEl.textContent = careerText;
+    var badgeEl = document.getElementById('js-career-badge');
+    if (badgeEl) badgeEl.textContent = careerText;
+
+    var projectCount = document.querySelectorAll('.project-card').length;
+    var projectEl = document.getElementById('js-project-count');
+    if (projectEl) projectEl.textContent = projectCount + '건';
+  }
+
+  updateCareerAndProjectStats();
 
   function applyTheme(theme) {
     root.classList.remove('theme-light', 'theme-dark');
