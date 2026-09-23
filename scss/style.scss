@@ -4,10 +4,12 @@
 //   _tokens.scss     테마(라이트/다크) 컬러 변수 · 브레이크포인트
 //   _base.scss       리셋 · 기본 타이포그래피
 //   _components.scss 글래스 카드 · 오브 · 네비게이션 · 스크롤 리빌 애니메이션
+//   _layout.scss     페이지 섹션별 레이아웃 클래스 (구 인라인 style 전체 이관)
 //   _responsive.scss 태블릿(1024px) · 모바일(640px) 반응형 오버라이드
 // ============================================================
 
 @use 'tokens';
 @use 'base';
 @use 'components';
+@use 'layout';
 @use 'responsive';

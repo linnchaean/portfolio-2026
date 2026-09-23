@@ -30,6 +30,14 @@
   border: none;
   cursor: pointer;
   font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
 }
 
 .site-nav {
@@ -54,9 +62,13 @@
 }
 
 .grid4 {
+  display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .grid3 {
+  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
