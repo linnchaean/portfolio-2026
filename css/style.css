@@ -151,6 +151,13 @@ a:hover {
   background: linear-gradient(160deg, var(--page-bg-a) 0%, var(--page-bg-b) 35%, var(--page-bg-c) 70%, var(--page-bg-a) 100%);
 }
 
+.orb-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .page-content {
   position: relative;
   z-index: 1;
